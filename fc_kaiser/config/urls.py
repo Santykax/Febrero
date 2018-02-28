@@ -20,5 +20,5 @@ from facturas.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', inicio, name="inicio"),
+    url(r'^factura', inicio, name="inicio"),
 ]

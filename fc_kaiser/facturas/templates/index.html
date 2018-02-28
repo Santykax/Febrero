@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Factura</title>
+    </head>    
+    <body>
+        {% for factura in factura %}
+            <div>
+                <h1>Producto: {{ factura.cliente }}</h1>
+                <p>Precio: ${{ factura.items.precio }}</p>
+                <p>Cantidad: {{ factura.items.cantidad }}</p>
+            </div>
+        {% endfor %}
+    </body>
+    
+</html>
