@@ -5,12 +5,27 @@ from django.db import models
 # Create your models here.
 
 class Factura(models.Model):
-    nombre = models.CharField(max_length=50)
-    tipo = models.CharField(max_length=1)
-    tipob = models.BooleanField()
+    cliente = models.CharField(max_length=50)
+    tipo_A = models.BooleanField()
+    
+    def __str__(self):
+        return '/{}/Tipo: {}/'.format(self.cliente, self.tipo_A)
     
 
-class Item(models.Model):
-    producto = models.CharField(max_length=50)
+class Producto(models.Model):
+    nombre = models.CharField(max_length=50)
     precio = models.FloatField()
     cantidad = models.IntegerField()
+    
+    def __str__(self):
+        return '/{}/${}/Cantidad: {}'.format(self.nombre, self.precio, self.cantidad)
+ 
+
+class Item(models.Model):
+    factura = models.ForeignKey(Factura, on_delete=models.CASCADE)
+    producto = models.OneToOneField(Producto)
+    
+    def __str__(self):
+        return '/Cliente: {}/Producto: {}/Precio: ${}/Cantidad: {}/'.format(self.factura.cliente, self.producto.nombre, self.producto.precio, self.producto.cantidad)
+    
+    

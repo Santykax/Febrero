@@ -4,4 +4,5 @@ from django.contrib import admin
 from facturas.models import *
 
 admin.site.register(Factura)
+admin.site.register(Producto)
 admin.site.register(Item)
